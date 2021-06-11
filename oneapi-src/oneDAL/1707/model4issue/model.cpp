@@ -6,218 +6,227 @@ DO NOT MODIFY IT.
 #include <daal.h>
 #include "tree.h"
 using namespace daal::algorithms::gbt::regression;
-ModelPtr getModel() {
-    ModelBuilder builder(28, 208);
+
+typedef void (*BuildTreeFunc)(ModelBuilder&, ModelBuilder::NodeId[]);
+
+static BuildTreeFunc buildTreeFuncs[] = {
+    buildTree1,
+    buildTree2,
+    buildTree3,
+    buildTree4,
+    buildTree5,
+    buildTree6,
+    buildTree7,
+    buildTree8,
+    buildTree9,
+    buildTree10,
+    buildTree11,
+    buildTree12,
+    buildTree13,
+    buildTree14,
+    buildTree15,
+    buildTree16,
+    buildTree17,
+    buildTree18,
+    buildTree19,
+    buildTree20,
+    buildTree21,
+    buildTree22,
+    buildTree23,
+    buildTree24,
+    buildTree25,
+    buildTree26,
+    buildTree27,
+    buildTree28,
+    buildTree29,
+    buildTree30,
+    buildTree31,
+    buildTree32,
+    buildTree33,
+    buildTree34,
+    buildTree35,
+    buildTree36,
+    buildTree37,
+    buildTree38,
+    buildTree39,
+    buildTree40,
+    buildTree41,
+    buildTree42,
+    buildTree43,
+    buildTree44,
+    buildTree45,
+    buildTree46,
+    buildTree47,
+    buildTree48,
+    buildTree49,
+    buildTree50,
+    buildTree51,
+    buildTree52,
+    buildTree53,
+    buildTree54,
+    buildTree55,
+    buildTree56,
+    buildTree57,
+    buildTree58,
+    buildTree59,
+    buildTree60,
+    buildTree61,
+    buildTree62,
+    buildTree63,
+    buildTree64,
+    buildTree65,
+    buildTree66,
+    buildTree67,
+    buildTree68,
+    buildTree69,
+    buildTree70,
+    buildTree71,
+    buildTree72,
+    buildTree73,
+    buildTree74,
+    buildTree75,
+    buildTree76,
+    buildTree77,
+    buildTree78,
+    buildTree79,
+    buildTree80,
+    buildTree81,
+    buildTree82,
+    buildTree83,
+    buildTree84,
+    buildTree85,
+    buildTree86,
+    buildTree87,
+    buildTree88,
+    buildTree89,
+    buildTree90,
+    buildTree91,
+    buildTree92,
+    buildTree93,
+    buildTree94,
+    buildTree95,
+    buildTree96,
+    buildTree97,
+    buildTree98,
+    buildTree99,
+    buildTree100,
+    buildTree101,
+    buildTree102,
+    buildTree103,
+    buildTree104,
+    buildTree105,
+    buildTree106,
+    buildTree107,
+    buildTree108,
+    buildTree109,
+    buildTree110,
+    buildTree111,
+    buildTree112,
+    buildTree113,
+    buildTree114,
+    buildTree115,
+    buildTree116,
+    buildTree117,
+    buildTree118,
+    buildTree119,
+    buildTree120,
+    buildTree121,
+    buildTree122,
+    buildTree123,
+    buildTree124,
+    buildTree125,
+    buildTree126,
+    buildTree127,
+    buildTree128,
+    buildTree129,
+    buildTree130,
+    buildTree131,
+    buildTree132,
+    buildTree133,
+    buildTree134,
+    buildTree135,
+    buildTree136,
+    buildTree137,
+    buildTree138,
+    buildTree139,
+    buildTree140,
+    buildTree141,
+    buildTree142,
+    buildTree143,
+    buildTree144,
+    buildTree145,
+    buildTree146,
+    buildTree147,
+    buildTree148,
+    buildTree149,
+    buildTree150,
+    buildTree151,
+    buildTree152,
+    buildTree153,
+    buildTree154,
+    buildTree155,
+    buildTree156,
+    buildTree157,
+    buildTree158,
+    buildTree159,
+    buildTree160,
+    buildTree161,
+    buildTree162,
+    buildTree163,
+    buildTree164,
+    buildTree165,
+    buildTree166,
+    buildTree167,
+    buildTree168,
+    buildTree169,
+    buildTree170,
+    buildTree171,
+    buildTree172,
+    buildTree173,
+    buildTree174,
+    buildTree175,
+    buildTree176,
+    buildTree177,
+    buildTree178,
+    buildTree179,
+    buildTree180,
+    buildTree181,
+    buildTree182,
+    buildTree183,
+    buildTree184,
+    buildTree185,
+    buildTree186,
+    buildTree187,
+    buildTree188,
+    buildTree189,
+    buildTree190,
+    buildTree191,
+    buildTree192,
+    buildTree193,
+    buildTree194,
+    buildTree195,
+    buildTree196,
+    buildTree197,
+    buildTree198,
+    buildTree199,
+    buildTree200,
+    buildTree201,
+    buildTree202,
+    buildTree203,
+    buildTree204,
+    buildTree205,
+    buildTree206,
+    buildTree207,
+    buildTree208
+};
+
+ModelPtr getModel(size_t nTrees) {
+    ModelBuilder builder(28, nTrees);
     ModelBuilder::TreeId treeId;
     ModelBuilder::NodeId nodeIds[61] = {ModelBuilder::noParent};
-    buildTree1(builder, nodeIds);
-    buildTree2(builder, nodeIds);
-    buildTree3(builder, nodeIds);
-    buildTree4(builder, nodeIds);
-    buildTree5(builder, nodeIds);
-    buildTree6(builder, nodeIds);
-    buildTree7(builder, nodeIds);
-    buildTree8(builder, nodeIds);
-    buildTree9(builder, nodeIds);
-    buildTree10(builder, nodeIds);
-    buildTree11(builder, nodeIds);
-    buildTree12(builder, nodeIds);
-    buildTree13(builder, nodeIds);
-    buildTree14(builder, nodeIds);
-    buildTree15(builder, nodeIds);
-    buildTree16(builder, nodeIds);
-    buildTree17(builder, nodeIds);
-    buildTree18(builder, nodeIds);
-    buildTree19(builder, nodeIds);
-    buildTree20(builder, nodeIds);
-    buildTree21(builder, nodeIds);
-    buildTree22(builder, nodeIds);
-    buildTree23(builder, nodeIds);
-    buildTree24(builder, nodeIds);
-    buildTree25(builder, nodeIds);
-    buildTree26(builder, nodeIds);
-    buildTree27(builder, nodeIds);
-    buildTree28(builder, nodeIds);
-    buildTree29(builder, nodeIds);
-    buildTree30(builder, nodeIds);
-    buildTree31(builder, nodeIds);
-    buildTree32(builder, nodeIds);
-    buildTree33(builder, nodeIds);
-    buildTree34(builder, nodeIds);
-    buildTree35(builder, nodeIds);
-    buildTree36(builder, nodeIds);
-    buildTree37(builder, nodeIds);
-    buildTree38(builder, nodeIds);
-    buildTree39(builder, nodeIds);
-    buildTree40(builder, nodeIds);
-    buildTree41(builder, nodeIds);
-    buildTree42(builder, nodeIds);
-    buildTree43(builder, nodeIds);
-    buildTree44(builder, nodeIds);
-    buildTree45(builder, nodeIds);
-    buildTree46(builder, nodeIds);
-    buildTree47(builder, nodeIds);
-    buildTree48(builder, nodeIds);
-    buildTree49(builder, nodeIds);
-    buildTree50(builder, nodeIds);
-    buildTree51(builder, nodeIds);
-    buildTree52(builder, nodeIds);
-    buildTree53(builder, nodeIds);
-    buildTree54(builder, nodeIds);
-    buildTree55(builder, nodeIds);
-    buildTree56(builder, nodeIds);
-    buildTree57(builder, nodeIds);
-    buildTree58(builder, nodeIds);
-    buildTree59(builder, nodeIds);
-    buildTree60(builder, nodeIds);
-    buildTree61(builder, nodeIds);
-    buildTree62(builder, nodeIds);
-    buildTree63(builder, nodeIds);
-    buildTree64(builder, nodeIds);
-    buildTree65(builder, nodeIds);
-    buildTree66(builder, nodeIds);
-    buildTree67(builder, nodeIds);
-    buildTree68(builder, nodeIds);
-    buildTree69(builder, nodeIds);
-    buildTree70(builder, nodeIds);
-    buildTree71(builder, nodeIds);
-    buildTree72(builder, nodeIds);
-    buildTree73(builder, nodeIds);
-    buildTree74(builder, nodeIds);
-    buildTree75(builder, nodeIds);
-    buildTree76(builder, nodeIds);
-    buildTree77(builder, nodeIds);
-    buildTree78(builder, nodeIds);
-    buildTree79(builder, nodeIds);
-    buildTree80(builder, nodeIds);
-    buildTree81(builder, nodeIds);
-    buildTree82(builder, nodeIds);
-    buildTree83(builder, nodeIds);
-    buildTree84(builder, nodeIds);
-    buildTree85(builder, nodeIds);
-    buildTree86(builder, nodeIds);
-    buildTree87(builder, nodeIds);
-    buildTree88(builder, nodeIds);
-    buildTree89(builder, nodeIds);
-    buildTree90(builder, nodeIds);
-    buildTree91(builder, nodeIds);
-    buildTree92(builder, nodeIds);
-    buildTree93(builder, nodeIds);
-    buildTree94(builder, nodeIds);
-    buildTree95(builder, nodeIds);
-    buildTree96(builder, nodeIds);
-    buildTree97(builder, nodeIds);
-    buildTree98(builder, nodeIds);
-    buildTree99(builder, nodeIds);
-    buildTree100(builder, nodeIds);
-    buildTree101(builder, nodeIds);
-    buildTree102(builder, nodeIds);
-    buildTree103(builder, nodeIds);
-    buildTree104(builder, nodeIds);
-    buildTree105(builder, nodeIds);
-    buildTree106(builder, nodeIds);
-    buildTree107(builder, nodeIds);
-    buildTree108(builder, nodeIds);
-    buildTree109(builder, nodeIds);
-    buildTree110(builder, nodeIds);
-    buildTree111(builder, nodeIds);
-    buildTree112(builder, nodeIds);
-    buildTree113(builder, nodeIds);
-    buildTree114(builder, nodeIds);
-    buildTree115(builder, nodeIds);
-    buildTree116(builder, nodeIds);
-    buildTree117(builder, nodeIds);
-    buildTree118(builder, nodeIds);
-    buildTree119(builder, nodeIds);
-    buildTree120(builder, nodeIds);
-    buildTree121(builder, nodeIds);
-    buildTree122(builder, nodeIds);
-    buildTree123(builder, nodeIds);
-    buildTree124(builder, nodeIds);
-    buildTree125(builder, nodeIds);
-    buildTree126(builder, nodeIds);
-    buildTree127(builder, nodeIds);
-    buildTree128(builder, nodeIds);
-    buildTree129(builder, nodeIds);
-    buildTree130(builder, nodeIds);
-    buildTree131(builder, nodeIds);
-    buildTree132(builder, nodeIds);
-    buildTree133(builder, nodeIds);
-    buildTree134(builder, nodeIds);
-    buildTree135(builder, nodeIds);
-    buildTree136(builder, nodeIds);
-    buildTree137(builder, nodeIds);
-    buildTree138(builder, nodeIds);
-    buildTree139(builder, nodeIds);
-    buildTree140(builder, nodeIds);
-    buildTree141(builder, nodeIds);
-    buildTree142(builder, nodeIds);
-    buildTree143(builder, nodeIds);
-    buildTree144(builder, nodeIds);
-    buildTree145(builder, nodeIds);
-    buildTree146(builder, nodeIds);
-    buildTree147(builder, nodeIds);
-    buildTree148(builder, nodeIds);
-    buildTree149(builder, nodeIds);
-    buildTree150(builder, nodeIds);
-    buildTree151(builder, nodeIds);
-    buildTree152(builder, nodeIds);
-    buildTree153(builder, nodeIds);
-    buildTree154(builder, nodeIds);
-    buildTree155(builder, nodeIds);
-    buildTree156(builder, nodeIds);
-    buildTree157(builder, nodeIds);
-    buildTree158(builder, nodeIds);
-    buildTree159(builder, nodeIds);
-    buildTree160(builder, nodeIds);
-    buildTree161(builder, nodeIds);
-    buildTree162(builder, nodeIds);
-    buildTree163(builder, nodeIds);
-    buildTree164(builder, nodeIds);
-    buildTree165(builder, nodeIds);
-    buildTree166(builder, nodeIds);
-    buildTree167(builder, nodeIds);
-    buildTree168(builder, nodeIds);
-    buildTree169(builder, nodeIds);
-    buildTree170(builder, nodeIds);
-    buildTree171(builder, nodeIds);
-    buildTree172(builder, nodeIds);
-    buildTree173(builder, nodeIds);
-    buildTree174(builder, nodeIds);
-    buildTree175(builder, nodeIds);
-    buildTree176(builder, nodeIds);
-    buildTree177(builder, nodeIds);
-    buildTree178(builder, nodeIds);
-    buildTree179(builder, nodeIds);
-    buildTree180(builder, nodeIds);
-    buildTree181(builder, nodeIds);
-    buildTree182(builder, nodeIds);
-    buildTree183(builder, nodeIds);
-    buildTree184(builder, nodeIds);
-    buildTree185(builder, nodeIds);
-    buildTree186(builder, nodeIds);
-    buildTree187(builder, nodeIds);
-    buildTree188(builder, nodeIds);
-    buildTree189(builder, nodeIds);
-    buildTree190(builder, nodeIds);
-    buildTree191(builder, nodeIds);
-    buildTree192(builder, nodeIds);
-    buildTree193(builder, nodeIds);
-    buildTree194(builder, nodeIds);
-    buildTree195(builder, nodeIds);
-    buildTree196(builder, nodeIds);
-    buildTree197(builder, nodeIds);
-    buildTree198(builder, nodeIds);
-    buildTree199(builder, nodeIds);
-    buildTree200(builder, nodeIds);
-    buildTree201(builder, nodeIds);
-    buildTree202(builder, nodeIds);
-    buildTree203(builder, nodeIds);
-    buildTree204(builder, nodeIds);
-    buildTree205(builder, nodeIds);
-    buildTree206(builder, nodeIds);
-    buildTree207(builder, nodeIds);
-    buildTree208(builder, nodeIds);
+    for (size_t i = 0; i < nTrees; i++) {
+        buildTreeFuncs[i](builder, nodeIds);
+    }
     return builder.getModel();
 }
     

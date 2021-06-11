@@ -7,9 +7,9 @@ DO NOT MODIFY IT.
 #include <iostream>
 #include <fstream>
 
-daal::algorithms::gbt::regression::ModelPtr getModel();
+daal::algorithms::gbt::regression::ModelPtr getModel(size_t);
 
-void dumpModel(daal::algorithms::gbt::regression::ModelPtr model) {
+bool dumpModel(daal::algorithms::gbt::regression::ModelPtr model) {
     daal::data_management::Compressor<daal::data_management::lzo> compressor;
     daal::data_management::InputDataArchive cDataArch(&compressor);
     daal::data_management::InputDataArchive dataArch;
@@ -18,7 +18,7 @@ void dumpModel(daal::algorithms::gbt::regression::ModelPtr model) {
     std::cout << "without compressor size: " << size << std::endl;
     if (size == 0) {
         std::cout << "errors: " << dataArch.getErrors()->getDescription() << std::endl;
-        return;
+        return false;
     }
 
     model->serialize(cDataArch);
@@ -26,15 +26,19 @@ void dumpModel(daal::algorithms::gbt::regression::ModelPtr model) {
     std::cout << "with compressor size: " << size << std::endl;
     if (size == 0) {
         std::cout << "errors: " << cDataArch.getErrors()->getDescription() << std::endl;
-        return;
+        return false;
     }
-
+    return true;
 }
 
 
 int main(int argc, char *argv[]) {
-    auto model = getModel();
-    std::cout << "model loaded" << std::endl;
-    dumpModel(model);
+    for (size_t i = 1; i < 209; i++) {
+        auto model = getModel(i);
+        std::cout << i << " trees model loaded" << std::endl;
+        if (!dumpModel(model)) {
+            std::cout << "serialize failed" << std::endl;
+        }
+    }
     return 0;
 }
